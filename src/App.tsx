@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useDemoData } from "@mui/x-data-grid-generator";
+import DataGrid from "./DataGrid";
 
-function App() {
+const visibleFields = [
+  "commodity",
+  "quantity",
+  "filledQuantity",
+  "status",
+  "isFilled",
+  "unitPrice",
+  "unitPriceCurrency",
+  "subTotal",
+  "feeRate",
+  "feeAmount",
+  "incoTerm",
+];
+
+function Main() {
+  const { data } = useDemoData({
+    dataSet: "Commodity",
+    rowLength: 100,
+    editable: false,
+    visibleFields,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section>
+      <DataGrid columns={data.columns} rows={data.rows} />
+    </section>
   );
 }
 
-export default App;
+export default Main;
